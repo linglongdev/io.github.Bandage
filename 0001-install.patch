@@ -1,0 +1,54 @@
+From 261a5f80bc2bfcb04839eb4e5c29701e8580186f Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Mon, 19 Aug 2024 15:51:06 +0800
+Subject: [PATCH] install
+
+---
+ Bandage.desktop | 11 +++++++++++
+ Bandage.pro     |  7 ++++++-
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+ create mode 100644 Bandage.desktop
+
+diff --git a/Bandage.desktop b/Bandage.desktop
+new file mode 100644
+index 0000000..7e294cc
+--- /dev/null
++++ b/Bandage.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=Bandage
++Name=Bandage
++Name[zh_CN]=Bandage
++Icon=Bandage
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=Bandage
++Version=0.9.0
+diff --git a/Bandage.pro b/Bandage.pro
+index 1e8c562..f6c5bbe 100644
+--- a/Bandage.pro
++++ b/Bandage.pro
+@@ -24,7 +24,7 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+ 
+ CONFIG += c++11
+ 
+-target.path += /usr/local/bin
++target.path += $$PREFIX/bin
+ INSTALLS += target
+ 
+ INCLUDEPATH += ui
+@@ -270,3 +270,8 @@ macx:QMAKE_MACOSX_DEPLOYMENT_TARGET = 11.0
+ win32: QTPLUGIN.platforms += qwindows qminimal
+ unix:!macx: QTPLUGIN.platforms += qxcb qminimal
+ macx: QTPLUGIN.platforms += qcocoa qminimal
++desktop.files = Bandage.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons
++icons.files = images/Bandage.png
++INSTALLS += desktop icons
+\ No newline at end of file
+-- 
+2.43.4
+
