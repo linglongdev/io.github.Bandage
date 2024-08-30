@@ -1,0 +1,29 @@
+version: "1"
+
+package:
+  id: io.github.Bandage
+  name: Bandage
+  version: 0.9.0.1
+  kind: app
+  description: |
+    a Bioinformatics Application for Navigating De novo Assembly Graphs Easily
+
+command:
+  - /opt/apps/io.github.Bandage/files/bin/Bandage
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/rrwick/Bandage.git
+    version: master
+    commit: f94d409a76bf6a13eef6af0a88476eaeffa71b32
+
+build: |
+  cd /project/linglong/sources/Bandage.git
+  git apply ../../../0001-install.patch
+  cp images/icon.png images/Bandage.png
+  qmake Bandage.pro PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install
